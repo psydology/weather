@@ -18,3 +18,4 @@ If you are interested in testing your code as you go, you can use `tests.js` as 
  6- make a global variables 
  7- add event listener click to get weather with chain methods
  8- add file gitignore to ignore unnecessary files
+ 9- using 2 way in code as shown 
