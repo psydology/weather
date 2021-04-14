@@ -36,11 +36,11 @@ app.get('/getData', (req , res)=>{
 
 
 
-const weather = []
+
 app.get('/all', sendData);
 
 function sendData (req, res) {
-  res.send(weather);
+  res.send(projectData);
 };
 // POST route
 app.post("/addData", addWeather);
@@ -51,9 +51,9 @@ function addWeather(req, res){
     temp : req.body.temp,
     content : req.body.content,
   }
-  weather.push(newEntry);
-  res.send(weather);
-  console.log(weather);
+  Object.assign(projectData , newEntry);
+  res.send(projectData);
+  console.log(projectData);
 }
   
 

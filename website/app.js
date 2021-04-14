@@ -55,10 +55,7 @@ const getWeather = async (url, zip, api) => {
 //helper 2 that tales 2 argument fetching on rout and post the data to the server
 
 const postData = async (url = "", data = {}) => {
-  console.log(data);
-  // document.getElementById("temp").innerHTML = "temp is: " + data.temp;
-  // document.getElementById("content").innerHTML = data.content;
-  // document.getElementById("date").innerHTML = "today is " + data.date;
+
 
   const response = await fetch(url, {
     method: "post",
@@ -75,7 +72,6 @@ const postData = async (url = "", data = {}) => {
   try {
     const newData = await response.json();
 
-    console.log(newData);
 
     return newData;
   } catch (error) {
@@ -89,9 +85,9 @@ const updateUI = async () => {
       try{
             const allData = await request.json();
             console.log(allData)
-            document.getElementById('temp').innerHTML = allData[0].temp;
-            document.getElementById('content').innerHTML = allData[1].content;
-            document.getElementById('date').innerHTML = allData[0].date;
+            document.getElementById('temp').innerHTML = `temp is : ${allData.temp}`;
+            document.getElementById('content').innerHTML = `I feel : ${allData.content}`;
+            document.getElementById('date').innerHTML = `today is : ${allData.date}`;
   
        }catch(error){
          console.log("error", error);
