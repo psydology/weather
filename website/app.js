@@ -19,7 +19,10 @@ function performAction() {
   const newZip = document.getElementById("zip").value;
 
   const feelings = document.getElementById("feelings").value;
-
+  //validation
+  if(!newZip){
+    alert("pls enter the zip code");
+  }
   //helper function 1 that takes 3 arguments
 
   getWeather(baseURL, newZip, apiKey).then(function (data) {
