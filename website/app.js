@@ -1,41 +1,42 @@
-// /* Global Variables */
-// let feel =  document.querySelector("#feelings").value;
-// let d = new Date();
-// let newDate = d.getMonth() + 1 +'.'+ d.getDate()+'.'+ d.getFullYear();
-// let apiKey = '2347199b7b202ff9893a858d23753dd0';
+// // /* Global Variables */
+// const feel =  document.querySelector("#feelings").value;
+// const d = new Date();
+// const newDate = d.getMonth() + 1 +'.'+ d.getDate()+'.'+ d.getFullYear();
+// const apiKey = '2347199b7b202ff9893a858d23753dd0';
 // document.getElementById('generate').addEventListener('click', getWeather);
 
 // // Create a new date instance dynamically with JS
 // async function getWeather(){
 //     try{
 //         const zipCode =  document.querySelector("#zip").value;
+//         const baseURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric` ;
 //         if(!zipCode){
 //             alert("you must add a zip code");
 //             return;
 //         }else{
-//             const getData = async ()=>{
-//                 const baseURL = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric` ;
-//                 const req = await fetch (baseURL);
-//                 try {
-//                     const data = await req.json();
-//                     return(data);
-//                 } catch (error) {
-//                    console.log(error)
-//                 }
-//             }
-//             getData.then(data => postData("/addData", {
-//                 temp: data.main.temp,
-//                 date: newDate,
-//                 feelings: feel,
+//             getData (baseURL).then(data => postData("/addData", {
+//               temp: data.main.temp,
+//               date: newDate,
+//               feelings: feel,
 //             })
 //             ). Then (() => updateUI() )
 //         }
-
+        
 //         }catch(err){
 //         console.log(err)
 //     }
 // }
+// const getData = async (baseURL)=>{
+   
+//     const req = await fetch (baseURL);
+//     try {
+//         const data = await req.json();
+//         return(data);
+//     } catch (error) {
+//        console.log(error)
+//     }
 
+// }
 // const postData = async (url = "/", data = {})=> {
 //     await fetch(url, {
 //         "method": "POST",
@@ -64,13 +65,13 @@
 // }
 
 //======================================================
-let baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
+const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
 
-let apiKey = "&appid=2347199b7b202ff9893a858d23753dd0&units=metric";
+const apiKey = "&appid=2347199b7b202ff9893a858d23753dd0&units=metric";
 
-let d = new Date();
+const d = new Date();
 
-let newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
+const newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
 
 // eventlistner for show the data when press on the button generator
 
@@ -100,7 +101,7 @@ function performAction() {
       content: feelings,
     });
     
-  })
+  }).then(updateUI)
 }
 
 //helper function 1 that takes 3 arguments then fetch on the complete url then return data
@@ -121,9 +122,9 @@ const getWeather = async (url, zip, api) => {
 
 const postData = async (url = "", data = {}) => {
   console.log(data);
-  document.getElementById("temp").innerHTML = "temp is: " + data.temp;
-  document.getElementById("content").innerHTML = data.content;
-  document.getElementById("date").innerHTML = "today is " + data.date;
+  // document.getElementById("temp").innerHTML = "temp is: " + data.temp;
+  // document.getElementById("content").innerHTML = data.content;
+  // document.getElementById("date").innerHTML = "today is " + data.date;
 
   const response = await fetch(url, {
     method: "post",
@@ -148,6 +149,19 @@ const postData = async (url = "", data = {}) => {
   }
 };
 
-
+const updateUI = async () => {
+      const request = await fetch('/all');
+      
+      try{
+            const allData = await request.json();
+            console.log(allData)
+            document.getElementById('temp').innerHTML = allData[0].temp;
+            document.getElementById('content').innerHTML = allData[1].content;
+            document.getElementById('date').innerHTML = allData[0].date;
+  
+       }catch(error){
+         console.log("error", error);
+       }
+   }
 
 
