@@ -1,7 +1,7 @@
 
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
 
-const apiKey = "&appid=2347199b7b202ff9893a858d23753dd0&units=metric";
+const apiKey = "&appid=Enteryourkeyfromopenweather.org&units=metric";
 
 const d = new Date();
 
