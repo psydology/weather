@@ -1,8 +1,8 @@
 
 const baseURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
 
+// pls use your key
 const apiKey = "&appid=Enteryourkeyfromopenweather.org&units=metric";
-
 const d = new Date();
 
 const newDate = d.getMonth() + 1 + "." + d.getDate() + "." + d.getFullYear();
